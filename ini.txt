@@ -1,0 +1,98 @@
+FastAPI 서버 실행하기 (백엔드 서버)
+
+파이참 터미널 projects/myapi 디렉터리에서 uvicorn main:app --reload 명령어 실행
+
+[파이참 터미널]
+
+(myapi) myapi % uvicorn main:app --reload
+Svelte 서버 실행하기 (프론트엔드 서버)
+
+VSCode 터미널 projects/myapi/frontend 디렉터리에서 npm run dev 명령어 실행
+
+[VSCode 터미널]
+
+frontend % npm run dev
+-------------------------------------------------------------
+
+
+
+
+ORM 라이브러리 설치하기
+(myapi) c:/projects/myapi> pip install sqlalchemy
+
+
+모델을 이용해 테이블 자동으로 생성하기
+모델을 구상하고 생성했으므로 SQLAlchemy의 alembic을 이용해 데이터베이스 테이블을 생성해 보자.
+
+(myapi) c:/projects/myapi> pip install alembic
+
+alembic 초기화
+(myapi) c:/projects/myapi> alembic init migrations
+
+
+[파일명: projects/myapi/alembic.ini]
+(... 생략 ...)
+--> sqlalchemy.url = sqlite:///./myapi.db
+
+[파일명: projects/myapi/migrations/env.py]
+
+(... 생략 ...)
+--> import models
+(... 생략 ...)
+# add your model's MetaData object here
+# for 'autogenerate' support
+# from myapp import mymodel
+# target_metadata = mymodel.Base.metadata
+
+--> target_metadata = models.Base.metadata
+
+리비전 파일 생성하기
+그리고 파이참 터미널에서 alembic revision --autogenerate 명령을 수행하자.
+
+[파이참 터미널]
+(myapi) c:/projects/myapi> alembic revision --autogenerate
+
+리비전 파일 실행하기
+이어서 alembic revision --autogenerate 명령으로 만들어진 리비전 파일을 alembic upgrade head 명령으로 실행하자.
+
+[파이참 터미널]
+(myapi) c:/projects/myapi> alembic upgrade head
+
+vcode 터미널에서 
+frontend % npm install svelte-spa-router
+
+2-7 답변등록
+https://wikidocs.net/176499
+
+3-03 스토어
+https://wikidocs.net/176723
+
+3-05 게시물에 일련번호 추가하기
+https://wikidocs.net/176738
+
+ EmailStr을 사용하기 위해서는 다음과 같이 email_validator를 먼저 설치해야 
+ (myapi) c:/projects/myapi> pip install "pydantic[email]"
+
+비밀번호를 암호화 하여 저장하기 위해서는 passlib가 필요하다.
+(myapi) c:/projects/myapi> pip install "passlib[bcrypt]"
+
+OAuth2PasswordRequestForm과 jwt를 사용
+
+(myapi) c:/projects/myapi> pip install python-multipart
+(myapi) c:/projects/myapi> pip install "python-jose[cryptography]"
+
+SECRET_KEY 생성하기
+>>> import secrets
+>>> secrets.token_hex(32)
+'344a451d26d1968c0cd4ca12613e5f61b0f71dafced442c730edba55bb9035bc'
+
+frontend % npm install qs
+
+
+3-09 글쓴이 저장하기
+https://wikidocs.net/177075
+fastapi 함수 수정하기 
+
+
+3-12 추천
+https://wikidocs.net/177135
